@@ -4,7 +4,7 @@
     <button onclick="cleanAndCountCharacters()">
         clean and count words
     </button>
-	<button onclick="toggleDisplay()">
+	<button onclick="renderHorizontal()">
         Toggle Display
     </button>
     <body>
@@ -192,12 +192,37 @@
             3.  
         */
 		
-		
+		var horizontalContainer = document.createElement('span');
+		horizontalContainer.id = 'horizontalContainer';
+		document.getElementById('rootContainer').appendChild(horizontalContainer);
     }
+	
+	//toggling the horizontal display does not clear the original container. 
+
+	function renderHorizontal() {
+		var horizontalContainer = document.getElementById('horizontalContainer');
+		var horizontalList = [];
+		
+		if (horizontalContainer.hasChildNodes()) {
+			run();
+		}
+		
+		else {
+			for (var i = 0; i < chicagoStartups.length; i++) {
+				horizontalList.push(chicagoStartups[i]);
+				var childSpan = document.createElement('span');
+				var text = document.createTextNode(horizontalList[i].concat('.  '));
+				childSpan.appendChild(text);
+				horizontalContainer.appendChild(childSpan);
+			}
+		}
+	}
+
     
     function run() {
         initDocument();
         initReverse();
+		toggleDisplay();
     }
     run();
     
